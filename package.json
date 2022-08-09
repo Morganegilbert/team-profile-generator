@@ -4,5 +4,25 @@
   },
   "dependencies": {
     "inquirer": "^8.2.4"
-  }
+  },
+  "name": "challenge-10",
+  "description": "\"# team-profile-generator\"",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Morganegilbert/team-profile-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Morganegilbert/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/Morganegilbert/team-profile-generator#readme"
 }
