@@ -1,16 +1,21 @@
 // Intern constant
-const Intern = require Intern; // Need to update
+const Intern = require ('../lib/Intern
 
-// add test for employee object
-
-// add test for name
-
-// add test for id
-
-// add test for email
-
-// add test for school
-
-// add test for getSchool()
-
-// add test for getRole()
+test("Can set school via constructor", () => {
+    const testValue = "UCLA";
+    const e = new Intern("Foo", 1, "test@test.com", testValue);
+    expect(e.school).toBe(testValue);
+  });
+  
+  test("getRole() should return \"Intern\"", () => {
+    const testValue = "Intern";
+    const e = new Intern("Foo", 1, "test@test.com", "UCLA");
+    expect(e.getRole()).toBe(testValue);
+  });
+  
+  test("Can get school via getSchool()", () => {
+    const testValue = "UCLA";
+    const e = new Intern("Foo", 1, "test@test.com", testValue);
+    expect(e.getSchool()).toBe(testValue);
+  });
+  

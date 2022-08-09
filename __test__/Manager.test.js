@@ -1,14 +1,21 @@
 // Manager constant
-const Manager = require Manager; // Need to update
+const Manager = require ('../lib/Manager');
+const Employee = require("../lib/Employee");
 
-// add test for employee object
+test("Can set office number via constructor argument", () => {
+  const testValue = 100;
+  const e = new Manager("Foo", 1, "test@test.com", testValue);
+  expect(e.officeNumber).toBe(testValue);
+});
 
-// add test for name
+test("getRole() should return \"Manager\"", () => {
+  const testValue = "Manager";
+  const e = new Manager("Foo", 1, "test@test.com", 100);
+  expect(e.getRole()).toBe(testValue);
+});
 
-// add test for id
-
-// add test for email
-
-// add test for officeNumber
-
-// add test for getRole()
+test("Can get office number via getOffice()", () => {
+  const testValue = 100;
+  const e = new Manager("Foo", 1, "test@test.com", testValue);
+  expect(e.getOfficeNumber()).toBe(testValue);
+});
