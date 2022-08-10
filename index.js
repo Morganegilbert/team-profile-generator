@@ -6,51 +6,220 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const questions = [
+// Constant for manager questions
+const questionsManager = [
+    console.log('Please build your team.')
+    //Questions for Manager
     {
-        // Start with "Please build your team"
         //What is the team manager's name?
+        type: "input",
+        name: "name",
+        message: "What is the team manager's name?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
     {
         //What is the team manager's id?
+        type: "input",
+        name: "id",
+        message: "What is the team manager's id?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
     {
         // What is the team manager's email?
+        type: "input",
+        name: "email",
+        message: "What is the team manager's email?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
     {
         // What is the team manager's office number?
+        type: "input",
+        name: "phone",
+        message: "What is the team manager's office number?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
+]
+
+// Constant for engineer questions
+const questionsEngineer = [
+
+    // Questions for Engineer
     {
         // Next employee
         //Which type of team member would you like to add?
+        type: "list",
+        name: "role",
+        message: "Which type of team member would you like to add?",
+        choices: ['Engineer', 'Intern']
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
     {
         // What is your engineer's name?
+        type: "input",
+        name: "name",
+        message: "What is your engineer's name?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
     {
         // What is your engineer's id?
+        type: "input",
+        name: "id",
+        message: "What is your engineer's id?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
     {
         // What is your engineer's email?
+        type: "input",
+        name: "email",
+        message: "What is your engineer's email?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
     {
         // What is your engineer's GitHub username?
+        type: "input",
+        name: "github",
+        message: "What is your engineer's GitHub username?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
+]
+
+// Constant for intern questions
+const questionsIntern = [
+
+    // Questions for Intern
     {
         // Next employee
         //Which type of team member would you like to add?
+        type: "input",
+        name: "phone",
+        message: "Which type of team member would you like to add?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
     {
         // What is your intern's name?
+        type: "input",
+        name: "name",
+        message: "What is your intern's name?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
     {
         // What is your intern's id?
+        type: "input",
+        name: "id",
+        message: "What is your intern's id?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
     {
         // What is your intern's email?
+        type: "input",
+        name: "email",
+        message: "What is your intern's email?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     },
     {
-        // what is your intern's email?
+        // What is your intern's school?
+        type: "input",
+        name: "school",
+        message: "What is your intern's school?",
+        // validate: usernameInput => {
+        //     if (usernameInput) {
+        //       return true;
+        //     } else {
+        //       console.log('You need to enter a GitHub username!');
+        //       return false;
+        //     }
+        //   }
     }
 ]
 
