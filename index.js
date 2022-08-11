@@ -246,17 +246,17 @@ function init() {
     .then((managerInfo) => {
         const {name, id, email, officeNumber} = managerInfo;
     
-        employeeGroup.push(Manager, managerInfo);
+        employeeGroup.push(managerInfo);
         console.log(employeeGroup)
     })
-    .then(function(managerInfo) {
-        addEmployee(managerInfo) 
+    .then(function(employeeGroup) {
+        addEmployee(employeeGroup) 
 
     })
 }
 
 // function for additional employees
-function addEmployee(managerInfo, employeeGroup) {
+function addEmployee(employeeGroup) {
       // Asks if user wants to add additional employee
         inquirer.prompt(addMember)
         .then((addMember) => {
@@ -266,7 +266,7 @@ function addEmployee(managerInfo, employeeGroup) {
             } else {
                     let fileName = "./dist/index.html";
                     // let license = answers.license;
-                    let htmlInfo = generateMarkdown(managerInfo, employeeGroup);
+                    let htmlInfo = generateMarkdown(employeeGroup);
                     
                     //Use user feedback for...
                     writeToFile(fileName, htmlInfo);
@@ -284,11 +284,22 @@ function newEmployee() {
 
         if (role === "Engineer") {
             inquirer.prompt(questionsEngineer)
+
+            .then(function(engineerInfo) {
+                const {name, id, email, officeNumber} = engineerInfo;
+                employeeGroup.push(engineerInfo);
+                console.log(employeeGroup)
+            })
             .then(function() {
                 addEmployee();
             })
         } else {
             inquirer.prompt(questionsIntern)
+            .then(function(internInfo) {
+                const {name, id, email, officeNumber} = internInfo;
+                employeeGroup.push(internInfo);
+                console.log(employeeGroup)
+            })
             .then(function() {
                 addEmployee();
             })
