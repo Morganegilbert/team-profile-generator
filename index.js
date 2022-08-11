@@ -75,6 +75,17 @@ const questionsManager = [
     },
 ]
 
+// Adds member
+const addMember = [
+    {
+        //Would you like to add another employee?
+        type: "list",
+        name: "addMembers",
+        message: "Would you like to add another employee?",
+        choices: ['yes', 'no']
+    }
+]
+// Chooses employee role
 const chooseRole = [
     {
         // Next employee
@@ -250,20 +261,41 @@ function init() {
         const {name, id, email, officeNumber} = managerInfo;
     
         employeeGroup.push(Manager, managerInfo);
-        console.log(managerInfo)
+        console.log(employeeGroup)
     })
-    // then moves to next employee
-    // .then(function({chooseRole}))
-    .then((answers) => {
-        let fileName = "./dist/index.html";
-        // let license = answers.license;
-        let htmlInfo = generateMarkdown(managerInfo, employeeGroup);
-        
-        //Use user feedback for...
-        writeToFile(fileName, htmlInfo);
-    
+    .then(function(managerInfo) {
+        addEmployee(managerInfo) 
+
     })
 }
+
+// function for additional employees
+function addEmployee(managerInfo, employeeGroup) {
+      // Asks if user wants to add additional employee
+        inquirer.prompt(addMember) 
+        .then((addMember) => {
+            if (addMember === "yes") {
+                newEmployee();
+            } else {
+                    let fileName = "./dist/index.html";
+                    // let license = answers.license;
+                    let htmlInfo = generateMarkdown(managerInfo, employeeGroup);
+                    
+                    //Use user feedback for...
+                    writeToFile(fileName, htmlInfo);
+                }              
+        })
+
+            
+        }
+
+    // then moves to next employee
+    // .then(function({chooseRole}) {
+    //     console.log("Made it to role!")l
+    //     inquirer.prompt(chooseRole);
+    // }) 
+
+
 
 // Function call to initialize app
 init();
