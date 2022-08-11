@@ -1,6 +1,8 @@
 // Function that returns card icons based on what is passed in - need to update
 // function renderLicenseBadge(license) {
 
+const Manager = require("../lib/Manager");
+
 //   if (license === "MIT") {
 //     let badgeValue = renderLicenseLink(license);
 //     return badgeValue;
@@ -52,8 +54,28 @@
 //   }
 // }
 
+generateManager = (employeeGroup) => {
+    return `
+    <div class="card" style="width: 20px">
+    <div class="card-header">
+        ${Manager.name}
+    </div>
+    <div class="card-list">
+        <li class="">
+        ${Manager.id}
+        </li>
+        <li class="">
+        ${Manager.email}
+        </li>
+        <li class="">
+        ${Manager.officeNumber}
+        </li>
+    </div>
+</div>
+    `    
+}
 // Function to generate markdown for HTML
-const generateHTML = function(managerInfo) {
+const generateHTML = function(employeeGroup) {
   return `
     <!DOCTYPE html>
     <head>
@@ -80,14 +102,8 @@ const generateHTML = function(managerInfo) {
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="card" style="width: 20px">
-                    <div class="card-header">${managerInfo.name}</div>
-                    <div class="card-list">
-                        <li class="">${managerInfo.id}</li>
-                        <li class="">${managerInfo.email}</li>
-                        <li class="">${managerInfo.officeNumer}</li>
-                    </div>
-                </div>
+
+                ${teamCards}
             </div>
         </div>
     </div>
