@@ -249,15 +249,16 @@ function init() {
     .then((managerInfo) => {
         const {name, id, email, officeNumber} = managerInfo;
     
-        employeeGroup.push(Manager);
-        console.log(Manager)
+        employeeGroup.push(Manager, managerInfo);
+        console.log(managerInfo)
     })
     // then moves to next employee
     // .then(function({chooseRole}))
     .then((answers) => {
         let fileName = "./dist/index.html";
         // let license = answers.license;
-        let htmlInfo = generateMarkdown(employeeGroup);
+        let htmlInfo = generateMarkdown(managerInfo, employeeGroup);
+        
         //Use user feedback for...
         writeToFile(fileName, htmlInfo);
     
