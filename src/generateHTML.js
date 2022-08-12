@@ -54,26 +54,30 @@ const Manager = require("../lib/Manager");
 //   }
 // }
 
-generateManager = (employeeGroup) => {
+generateEmployee = (employeeGroup) => {
+    console.log(JSON.parse(employeeGroup));
+
     return `
     <div class="card" style="width: 20px">
     <div class="card-header">
-        ${Manager.name}
+        ${employeeGroup.name} 
+        ${employeeGroup.role}
     </div>
     <div class="card-list">
         <li class="">
-        ${Manager.id}
+        ${employeeGroup.id}
         </li>
         <li class="">
-        ${Manager.email}
+        ${employeeGroup.email}
         </li>
         <li class="">
-        ${Manager.officeNumber}
+        ${employeeGroup.officeNumber}
         </li>
     </div>
 </div>
     `    
 }
+
 // Function to generate markdown for HTML
 const generateHTML = function(employeeGroup) {
   return `
@@ -103,13 +107,30 @@ const generateHTML = function(employeeGroup) {
         <div class="row">
             <div class="col">
 
-                ${teamCards}
+                ${generateEmployee}
             </div>
         </div>
     </div>
     </body>
     </html>
 `;
+}
+
+function teamCards(employeeGroup) {
+    // Need to add array pulls for each employee
+    cardArrays = [];
+
+    for (let i = 0; i < employeeGroup.length; i++) {
+        const employee = employeeGroup[i];
+     // Manager array
+
+    // Engineer arrays
+
+    // Intern arrays       
+    }
+
+
+
 }
 
 // Exports

@@ -244,9 +244,10 @@ function init() {
     inquirer.prompt(questionsManager)
     // pushes manager info
     .then((managerInfo) => {
+        let role = Manager;
         const {name, id, email, officeNumber} = managerInfo;
     
-        employeeGroup.push(managerInfo);
+        employeeGroup.push(role, managerInfo);
         console.log(employeeGroup)
     })
     .then(function(employeeGroup) {
@@ -264,10 +265,14 @@ function addEmployee(employeeGroup) {
             if (addMembers === "yes") {
                 newEmployee();
             } else {
+                const separateGroup = employeeGroup.stringify()
+                const group = separateGroup.json();
+                console.log(group);
                     let fileName = "./dist/index.html";
                     // let license = answers.license;
                     let htmlInfo = generateMarkdown(employeeGroup);
-                    
+
+
                     //Use user feedback for...
                     writeToFile(fileName, htmlInfo);
                 }              
@@ -286,8 +291,9 @@ function newEmployee() {
             inquirer.prompt(questionsEngineer)
 
             .then(function(engineerInfo) {
+                let role = Engineer;
                 const {name, id, email, officeNumber} = engineerInfo;
-                employeeGroup.push(engineerInfo);
+                employeeGroup.push(role, engineerInfo);
                 console.log(employeeGroup)
             })
             .then(function() {
@@ -296,9 +302,9 @@ function newEmployee() {
         } else {
             inquirer.prompt(questionsIntern)
             .then(function(internInfo) {
+                let role = Intern;
                 const {name, id, email, officeNumber} = internInfo;
-                employeeGroup.push(internInfo);
-                console.log(employeeGroup)
+                employeeGroup.push(role, internInfo);
             })
             .then(function() {
                 addEmployee();
