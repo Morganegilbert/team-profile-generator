@@ -244,10 +244,10 @@ function init() {
     inquirer.prompt(questionsManager)
     // pushes manager info
     .then((managerInfo) => {
-        let role = Manager;
+        var role = "Manager";
         const {name, id, email, officeNumber} = managerInfo;
-    
-        employeeGroup.push(role, managerInfo);
+        const newManagerInfo = {role, managerInfo};
+        employeeGroup.push(newManagerInfo);
         console.log(employeeGroup)
     })
     .then(function(employeeGroup) {
@@ -265,14 +265,10 @@ function addEmployee(employeeGroup) {
             if (addMembers === "yes") {
                 newEmployee();
             } else {
-                const separateGroup = employeeGroup.stringify()
-                const group = separateGroup.json();
-                console.log(group);
                     let fileName = "./dist/index.html";
                     // let license = answers.license;
                     let htmlInfo = generateMarkdown(employeeGroup);
-
-
+                    
                     //Use user feedback for...
                     writeToFile(fileName, htmlInfo);
                 }              
@@ -291,9 +287,11 @@ function newEmployee() {
             inquirer.prompt(questionsEngineer)
 
             .then(function(engineerInfo) {
-                let role = Engineer;
+                let role = "Engineer";
                 const {name, id, email, officeNumber} = engineerInfo;
-                employeeGroup.push(role, engineerInfo);
+                const newEngineerInfo = {role, engineerInfo};
+
+                employeeGroup.push(newEngineerInfo);
                 console.log(employeeGroup)
             })
             .then(function() {
@@ -302,9 +300,12 @@ function newEmployee() {
         } else {
             inquirer.prompt(questionsIntern)
             .then(function(internInfo) {
-                let role = Intern;
+                let role = "Intern";
                 const {name, id, email, officeNumber} = internInfo;
-                employeeGroup.push(role, internInfo);
+                const newInternInfo = {role, internInfo};
+
+                employeeGroup.push(newInternInfo);
+                console.log(employeeGroup)
             })
             .then(function() {
                 addEmployee();
