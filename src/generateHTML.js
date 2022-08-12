@@ -58,38 +58,50 @@ generateEmployee = (employeeGroup) => {
     console.log("This is my parsed employee group", employeeGroup);
     let option = "unknown";
     if (employeeGroup.role === "Manager") {
-        option = employeeGroup.info.officeNumber
+        option = employeeGroup.info.officeNumber;
+        optionText = "Office Number:";
+        optionLink = 'href="tel:' + employeeGroup.info.officeNumber+ '"';
 
     } else if (employeeGroup.role === "Engineer") {
-        option = employeeGroup.info.github
+        option = employeeGroup.info.github;
+        optionText = "GitHub:";
+        optionLink = 'href="https://github.com/' + employeeGroup.info.github + '"';
 
     } else {
-        option = employeeGroup.info.school
+        option = employeeGroup.info.school;
+        optionText = "School:";
+        optionLink = "";
     }
 
     return `
-    <div class="card" style="width: 20px">
-    <div class="card-header">
+    <div class="card mx-auto" style="box-shadow: 5px; margin: 10px 20px; width: 20vw">
+    <div class="card-header bold" style="background-color: lavender;">
         ${employeeGroup.info.name} 
+        </br>
         ${employeeGroup.role}
     </div>
-    <div class="card-list">
-        <li class="">
-        ${employeeGroup.info.id}
-        </li>
-        <li class="">
+    <ul class="card-body">
+        <div class="id" style="margin-top: 10px;">
+        ID: ${employeeGroup.info.id}
+        </div>
+        <div>Email:
+        <a class="email" style="margin-top: 10px;" href="mailto:${employeeGroup.info.email}">
         ${employeeGroup.info.email}
-        </li>
-        <li class="">
+        </a>
+        </div>
+        <div>${optionText}
+        <a class="option" style="margin-top: 10px;" ${optionLink}>
         ${option}
-        </li>
-    </div>
+        </a>
+        </div>
+    </ul>
 </div>
     `    
 }
 
 // Function to generate markdown for HTML
 const generateHTML = function(employeeGroup) {
+    // Returns HTML with the teamcards function activated
   return `
     <!DOCTYPE html>
     <head>
@@ -106,17 +118,13 @@ const generateHTML = function(employeeGroup) {
             integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
             crossorigin="anonymous"
         />
-        <link 
-            rel="stylesheet" href="./assets/css/style.css" 
-        />
         <title>Team Profile Generator</title>
   </head>
     <body>
-    <h1 class="header">Team Profile Generator</h1>
+    <h1 class="jumbotron" style="text-align: center; background-color: SlateBlue;">Team Profile Generator</h1>
     <div class="container">
-        <div class="row">
-            <div class="col">
-
+        <div class="row justify-content-center">
+            <div class="card-deck">
                 ${teamCards(employeeGroup)}
             </div>
         </div>
