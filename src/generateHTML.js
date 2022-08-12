@@ -55,23 +55,33 @@ const Manager = require("../lib/Manager");
 // }
 
 generateEmployee = (employeeGroup) => {
-    console.log(JSON.parse(employeeGroup));
+    console.log("This is my parsed employee group", employeeGroup);
+    let option = "unknown";
+    if (employeeGroup.role === "Manager") {
+        option = employeeGroup.info.officeNumber
+
+    } else if (employeeGroup.role === "Engineer") {
+        option = employeeGroup.info.github
+
+    } else {
+        option = employeeGroup.info.school
+    }
 
     return `
     <div class="card" style="width: 20px">
     <div class="card-header">
-        ${employeeGroup.name} 
+        ${employeeGroup.info.name} 
         ${employeeGroup.role}
     </div>
     <div class="card-list">
         <li class="">
-        ${employeeGroup.id}
+        ${employeeGroup.info.id}
         </li>
         <li class="">
-        ${employeeGroup.email}
+        ${employeeGroup.info.email}
         </li>
         <li class="">
-        ${employeeGroup.officeNumber}
+        ${option}
         </li>
     </div>
 </div>
@@ -107,7 +117,7 @@ const generateHTML = function(employeeGroup) {
         <div class="row">
             <div class="col">
 
-                ${generateEmployee}
+                ${teamCards(employeeGroup)}
             </div>
         </div>
     </div>
@@ -118,19 +128,14 @@ const generateHTML = function(employeeGroup) {
 
 function teamCards(employeeGroup) {
     // Need to add array pulls for each employee
-    cardArrays = [];
+    console.log("This is teamcard", employeeGroup);
+    let results = "";
 
     for (let i = 0; i < employeeGroup.length; i++) {
-        const employee = employeeGroup[i];
-     // Manager array
-
-    // Engineer arrays
-
-    // Intern arrays       
+        console.log("Made it to the loop", employeeGroup[i]);
+        results += generateEmployee(employeeGroup[i]);
     }
-
-
-
+    return results;
 }
 
 // Exports
