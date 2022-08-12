@@ -243,10 +243,10 @@ function init() {
     console.log("Please build your team.");
     inquirer.prompt(questionsManager)
     // pushes manager info
-    .then((managerInfo) => {
+    .then((info) => {
         var role = "Manager";
-        const {name, id, email, officeNumber} = managerInfo;
-        const newManagerInfo = {role, managerInfo};
+        const {name, id, email, officeNumber} = info;
+        const newManagerInfo = {role, info};
         employeeGroup.push(newManagerInfo);
         console.log(employeeGroup)
     })
@@ -257,7 +257,7 @@ function init() {
 }
 
 // function for additional employees
-function addEmployee(employeeGroup) {
+function addEmployee() {
       // Asks if user wants to add additional employee
         inquirer.prompt(addMember)
         .then((addMember) => {
@@ -286,10 +286,10 @@ function newEmployee() {
         if (role === "Engineer") {
             inquirer.prompt(questionsEngineer)
 
-            .then(function(engineerInfo) {
+            .then(function(info) {
                 let role = "Engineer";
-                const {name, id, email, officeNumber} = engineerInfo;
-                const newEngineerInfo = {role, engineerInfo};
+                const {name, id, email, officeNumber} = info;
+                const newEngineerInfo = {role, info};
 
                 employeeGroup.push(newEngineerInfo);
                 console.log(employeeGroup)
@@ -299,10 +299,10 @@ function newEmployee() {
             })
         } else {
             inquirer.prompt(questionsIntern)
-            .then(function(internInfo) {
+            .then(function(info) {
                 let role = "Intern";
-                const {name, id, email, officeNumber} = internInfo;
-                const newInternInfo = {role, internInfo};
+                const {name, id, email, officeNumber} = info;
+                const newInternInfo = {role, info};
 
                 employeeGroup.push(newInternInfo);
                 console.log(employeeGroup)
