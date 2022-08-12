@@ -5,6 +5,7 @@ const Intern = require("./lib/Intern");
 
 // Need constant for page generation
 const generateMarkdown = require("./src/generateHTML")
+
 // Constants for inquirer and fs
 const inquirer = require('inquirer');
 const fs = require('fs');
@@ -12,38 +13,36 @@ const fs = require('fs');
 // Const for Employees
 const employeeGroup = [];
 
-// Constant for manager questions
+// Constant for manager questions - will come back to update validations
 const questionsManager = [
-    // console.log('Please build your team.'),
     //Questions for Manager
-
     {
         //What is the team manager's name?
         type: "input",
         name: "name",
         message: "What is the team manager's name?",
-        // validate: usernameInput => {
-        //     if (usernameInput) {
-        //       return true;
-        //     } else {
-        //       console.log('You need to enter a GitHub username!');
-        //       return false;
-        //     }
-        //   }
+        validate: nameInput => {
+            if (nameInput) {
+              return true;
+            } else {
+              console.log("You need to enter the manager's name!");
+              return false;
+            }
+          }
     },
     {
         //What is the team manager's id?
         type: "input",
         name: "id",
         message: "What is the team manager's id?",
-        // validate: usernameInput => {
-        //     if (usernameInput) {
-        //       return true;
-        //     } else {
-        //       console.log('You need to enter a GitHub username!');
-        //       return false;
-        //     }
-        //   }
+        validate: usernameInput => {
+            if (usernameInput) {
+              return true;
+            } else {
+              console.log('You need to enter a GitHub username!');
+              return false;
+            }
+          }
     },
     {
         // What is the team manager's email?
@@ -85,6 +84,7 @@ const addMember = [
         choices: ['yes', 'no']
     }
 ]
+
 // Chooses employee role
 const chooseRole = [
     {
@@ -109,7 +109,6 @@ const chooseRole = [
 const questionsEngineer = [
 
     // Questions for Engineer
-
     {
         // What is your engineer's name?
         type: "input",
@@ -248,7 +247,6 @@ function init() {
         const {name, id, email, officeNumber} = info;
         const newManagerInfo = {role, info};
         employeeGroup.push(newManagerInfo);
-        console.log(employeeGroup)
     })
     .then(function(employeeGroup) {
         addEmployee(employeeGroup) 
@@ -273,8 +271,6 @@ function addEmployee() {
                     writeToFile(fileName, htmlInfo);
                 }              
         })
-
-            
 }
 
 // then moves to next employee
@@ -283,6 +279,7 @@ function newEmployee() {
     .then((chooseRole) => {
         let role =chooseRole.role;
 
+        // If role is engineer, will go to engineer questions prompt, otherwise will go to intern
         if (role === "Engineer") {
             inquirer.prompt(questionsEngineer)
 
@@ -292,7 +289,6 @@ function newEmployee() {
                 const newEngineerInfo = {role, info};
 
                 employeeGroup.push(newEngineerInfo);
-                console.log(employeeGroup)
             })
             .then(function() {
                 addEmployee();
@@ -305,7 +301,6 @@ function newEmployee() {
                 const newInternInfo = {role, info};
 
                 employeeGroup.push(newInternInfo);
-                console.log(employeeGroup)
             })
             .then(function() {
                 addEmployee();
@@ -314,13 +309,6 @@ function newEmployee() {
         
     })
 }
-    // .then(function({chooseRole}) {
-    //     console.log("Made it to role!")l
-    //     inquirer.prompt(chooseRole);
-    // }) 
-
-
-
 
 // Function call to initialize app
 init();
